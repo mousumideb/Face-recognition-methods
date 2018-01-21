@@ -1,0 +1,160 @@
+%MATLAB code
+t1=cputime;
+N=64;
+rgb = imread('01.jpg'); %read the image  
+I = rgb2gray(rgb);%convert the RGB to gray scale image
+I=imresize(I,[N N],'bilinear');
+
+n=1;
+for i = 1:N
+for j = 1:N
+w1i(n) = I(i,j);
+n=n+1;
+end
+end
+
+
+
+
+%MATLAB code
+rgb = imread('02.jpg'); %read the image  
+I = rgb2gray(rgb);%convert the RGB to gray scale image
+I=imresize(I,[N N],'bilinear');
+
+n=1;
+for i = 1:N
+for j = 1:N
+w2i(n) = I(i,j);
+n=n+1;
+end
+end
+
+
+
+%MATLAB code
+rgb = imread('15.jpg'); %read the image  
+I = rgb2gray(rgb);%convert the RGB to gray scale image
+I=imresize(I,[N N],'bilinear');
+
+n=1;
+for i = 1:N
+for j = 1:N
+w3i(n) = I(i,j);
+n=n+1;
+end
+end
+
+
+
+%MATLAB code
+rgb = imread('04.jpg'); %read the image  
+I = rgb2gray(rgb);%convert the RGB to gray scale image
+I=imresize(I,[N N],'bilinear');
+
+n=1;
+for i = 1:N
+for j = 1:N
+w4i(n) = I(i,j);
+n=n+1;
+end
+end
+
+
+
+%MATLAB code
+rgb = imread('05.jpg'); %read the image  
+I = rgb2gray(rgb);%convert the RGB to gray scale image
+I=imresize(I,[N N],'bilinear');
+
+n=1;
+for i = 1:N
+for j = 1:N
+w5i(n) = I(i,j);
+n=n+1;
+end
+end
+
+
+
+%MATLAB code
+rgb = imread('06.jpg'); %read the image  
+I = rgb2gray(rgb);%convert the RGB to gray scale image
+I=imresize(I,[N N],'bilinear');
+
+n=1;
+for i = 1:N
+for j = 1:N
+w6i(n) = I(i,j);
+n=n+1;
+end
+end
+
+
+%MATLAB code
+rgb = imread('07.jpg'); %read the image  
+I = rgb2gray(rgb);%convert the RGB to gray scale image
+I=imresize(I,[N N],'bilinear');
+
+n=1;
+for i = 1:N
+for j = 1:N
+w7i(n) = I(i,j);
+n=n+1;
+end
+end
+
+
+
+
+%MATLAB code
+rgb = imread('08.jpg'); %read the image  
+I = rgb2gray(rgb);%convert the RGB to gray scale image
+I=imresize(I,[N N],'bilinear');
+
+n=1;
+for i = 1:N
+for j = 1:N
+w8i(n) = I(i,j);
+n=n+1;
+end
+end
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+X=[transpose(w1i) transpose(w2i) transpose(w3i) transpose(w4i)  transpose(w5i)  transpose(w6i)  transpose(w7i)  transpose(w8i)];
+X=double(X);
+
+%%%%%%%%%%%%%%%%%%%%%
+%MATLAB code
+rgb = imread('e.jpg'); %read the image  to be test
+I = rgb2gray(rgb);%convert the RGB to gray scale image
+I=imresize(I,[N N],'bilinear');
+
+n=1;
+for i = 1:N
+for j = 1:N
+y(n) = I(i,j);
+n=n+1;
+end
+end
+y=double(y);
+
+%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+yhat=X*inv((transpose(X)*X))*transpose(X)*transpose(y);
+error= abs(abs(y)-transpose(abs(yhat)));
+e1=sum(sum(error));
+Y=sum(sum(y));
+e=e1/Y
+t2=cputime;
+time=t2-t1
+
+
+
+
+
